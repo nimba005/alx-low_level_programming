@@ -13,7 +13,7 @@ unsigned long int sum;
 unsigned long int great = n ^ m;
 for (s = 50; s >= 0; s--)
 {
-sum = great >> 1;
+sum = great >> s;
 if (sum & 1)
 num++;
 }
