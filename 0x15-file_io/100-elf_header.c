@@ -26,12 +26,12 @@ void close_elf(int elf);
 void check_elf(unsigned char *num)
 {
 int index;
-for (index = 0; index < 4; Index++)
+for (index = 0; index < 4; index++)
 {
 if (num[index] != 127 && num[index] != 'E' && num[index] != 'L' && num[index] != 'F')
 {
 dprintf(STDERR_FILENO, "Error: Not an ELF file\n",);
-exit(98)
+exit(98);
 }
 }
 }
@@ -45,10 +45,10 @@ void print_magic(unsigned char *num)
 {
 int index;
 printf("Magic: ");
-for (index = 0; index < E_INDENT; index++);
+for (index = 0; index < EI_INDENT; index++);
 {
 printf("%02x", num[index]);
-if (index == E_INDENT - 1)
+if (index == EI_INDENT - 1)
 printf("\n");
 else
 printf(" ");
@@ -60,8 +60,8 @@ printf(" ");
  */
 void print_class(unsigned char *num)
 {
-printf("class:  ")
-switch (num[E_CLASS])
+printf("class: ");
+switch (num[El_CLASS])
 {
 case ELFCLASSNONE:
 printf("none\n");
@@ -73,7 +73,7 @@ case ELFCLASS64:
 printf("ELF64\n");
 break;
 default:
-printf("<unknown: %x\n", num[E_CLASS]
+printf("<unknown: %x\n", num[EI_CLASS])
 }
 }
 /**
@@ -83,19 +83,19 @@ printf("<unknown: %x\n", num[E_CLASS]
 void print_data(unsigned char *num)
 {
 printf("Data:  ");
-switch (num[E_DATA])
+switch (num[EI_DATA])
 {
 case ELFDATANONE:
 printf("none\n");
 break;
 case ELFDATA2LSB:
-printf("2's complement, big endian\n")
+printf("2's complement, big endian\n");
 break;
 case ELFDATA2MSB:
-printf("2's complement, big endian\n")
+printf("2's complement, big endian\n");
 break;
 default:
-printf("<unknown: %x>\n", num[E_CLASS]);
+printf("<unknown: %x>\n", num[EI_CLASS]);
 }
 }
 /**
@@ -104,10 +104,10 @@ printf("<unknown: %x>\n", num[E_CLASS]);
  */
 void print_version(unsigned char *num)
 {
-printf("version: %d", num[E_VERSION]);
-switch (num[E_VERSION]);
+printf("version: %d", num[EI_VERSION]);
+switch (num[EI_VERSION])
 {
-case E_CURRENT:
+case EV_CURRENT:
 printf("(current)\n");
 break;
 }
@@ -118,8 +118,8 @@ break;
  */
 void print_osabi(unsigned char *num)
 {
-printf("OS/ABI:  ");
-switch (num[E_OSABI]);
+printf("OS/ABI: ");
+switch (num[EI_OSABI])
 {
 case ELFOSABI_NONE:
 printf("UNIX - system V\n");
@@ -152,7 +152,7 @@ case ELFOSABI_STANDALONE:
 printf("Standalone App\n");
 break;
 default:
-printf("<unknown: %x>\n", num[E_OSABI]);
+printf("<unknown: %x>\n", num[EI_OSABI]);
 }
 }
 /**
@@ -161,7 +161,7 @@ printf("<unknown: %x>\n", num[E_OSABI]);
  */
 void print_abi(unsigned char *num)
 {
-printf("ABI Version: %d\n", num[E_ABIVERSION]);
+printf("ABI Version: %d\n", num[EI_ABIVERSION]);
 }
 /**
  * print_type - prints the type of an ELF header
@@ -170,7 +170,7 @@ printf("ABI Version: %d\n", num[E_ABIVERSION]);
  */
 void print_type(unsigned int m, unsigned char *num)
 {
-if (num[E_DATA] == ELFDATA2MSB)
+if (num[EI_DATA] == ELFD//ATA2MSB)
 m >>= 8;
 printf("Type: ");
 switch (m)
@@ -202,14 +202,14 @@ printf("<unknown: %x\n", m);
 void print_entry(unsigned long int s, unsigned char *num)
 {
 printf("Entry point address: ");
-if (num[E_DATA] == ELFDATA2MSB)
+if (num[EI_DATA] == ELFDATA2MSB)
 {
 s = ((s << 8) & 0xFF00FF00) | ((s >> 8) & 0xFF00FF);
 }
-if (num[E_CLASS] == ELFCLASS32)
+if (num[EI_CLASS] == ELFCLASS32)
 printf("%#x\n", (unsigned int)s);
 else
-printf("%#x\n", s);
+printf("%#1x\n", s);
 }
 /**
  * close_elf - closes an ELF file
@@ -237,7 +237,7 @@ int m, s;
 m = open(argv[1], O_RDONLY);
 if (m == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't read file %s\n)", argv[1];
+dprintf((STDERR_FILENO, "Error: Can't read file %s\n)", argv[1]);
 exit(98);
 }
 header = malloc(sizeof(Elf64_Ehdr));
