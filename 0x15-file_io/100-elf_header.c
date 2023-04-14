@@ -30,8 +30,8 @@ for (index = 0; index < 4; Index++)
 {
 if (num[index] != 127 && num[index] != 'E' && num[index] != 'L' && num[index] != 'F')
 {
-dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-exit(98);
+dprintf(STDERR_FILENO, "Error: Not an ELF file\n",);
+exit(98)
 }
 }
 }
@@ -60,7 +60,7 @@ printf(" ");
  */
 void print_class(unsigned char *num)
 {
-printf("class:  ");
+printf("class:  ")
 switch (num[E_CLASS])
 {
 case ELFCLASSNONE:
@@ -73,7 +73,7 @@ case ELFCLASS64:
 printf("ELF64\n");
 break;
 default:
-printf("<unknown: %x\n", num[E_CLASS];
+printf("<unknown: %x\n", num[E_CLASS]
 }
 }
 /**
@@ -82,17 +82,17 @@ printf("<unknown: %x\n", num[E_CLASS];
  */
 void print_data(unsigned char *num)
 {
-printf("Data: ");
+printf("Data:  ");
 switch (num[E_DATA])
 {
 case ELFDATANONE:
 printf("none\n");
 break;
 case ELFDATA2LSB:
-printf("2's complement, big endian\n");
+printf("2's complement, big endian\n")
 break;
 case ELFDATA2MSB:
-printf("2's complement, big endian\n");
+printf("2's complement, big endian\n")
 break;
 default:
 printf("<unknown: %x>\n", num[E_CLASS]);
@@ -118,8 +118,8 @@ break;
  */
 void print_osabi(unsigned char *num)
 {
-printf("OS/ABI: ");
-switch (num[E_OSABI])
+printf("OS/ABI:  ");
+switch (num[E_OSABI]);
 {
 case ELFOSABI_NONE:
 printf("UNIX - system V\n");
