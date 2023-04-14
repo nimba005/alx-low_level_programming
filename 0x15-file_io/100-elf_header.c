@@ -30,7 +30,7 @@ for (index = 0; index < 4; index++)
 {
 if (num[index] != 127 && num[index] != 'E' && num[index] != 'L' && num[index] != 'F')
 {
-dprintf(STDERR_FILENO, "Error: Not an ELF file\n",);
+dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 exit(98);
 }
 }
@@ -45,10 +45,10 @@ void print_magic(unsigned char *num)
 {
 int index;
 printf("Magic: ");
-for (index = 0; index < EI_INDENT; index++);
+for (index = 0; index < EI_NIDENT; index++)
 {
 printf("%02x", num[index]);
-if (index == EI_INDENT - 1)
+if (index == EI_NIDENT - 1)
 printf("\n");
 else
 printf(" ");
@@ -61,7 +61,7 @@ printf(" ");
 void print_class(unsigned char *num)
 {
 printf("class: ");
-switch (num[El_CLASS])
+switch (num[EI_CLASS])
 {
 case ELFCLASSNONE:
 printf("none\n");
@@ -82,7 +82,7 @@ printf("<unknown: %x\n", num[EI_CLASS])
  */
 void print_data(unsigned char *num)
 {
-printf("Data:  ");
+printf("Data: ");
 switch (num[EI_DATA])
 {
 case ELFDATANONE:
@@ -170,7 +170,7 @@ printf("ABI Version: %d\n", num[EI_ABIVERSION]);
  */
 void print_type(unsigned int m, unsigned char *num)
 {
-if (num[EI_DATA] == ELFD//ATA2MSB)
+if (num[EI_DATA] == ELFD/ATA2MSB)
 m >>= 8;
 printf("Type: ");
 switch (m)
@@ -202,14 +202,14 @@ printf("<unknown: %x\n", m);
 void print_entry(unsigned long int s, unsigned char *num)
 {
 printf("Entry point address: ");
-if (num[EI_DATA] == ELFDATA2MSB)
+if (num[EI_DATA] == ELFD/ATA2MSB)
 {
 s = ((s << 8) & 0xFF00FF00) | ((s >> 8) & 0xFF00FF);
 }
 if (num[EI_CLASS] == ELFCLASS32)
 printf("%#x\n", (unsigned int)s);
 else
-printf("%#1x\n", s);
+printf("%#lx\n", s);
 }
 /**
  * close_elf - closes an ELF file
@@ -220,7 +220,7 @@ void close_elf(int elf)
 {
 if (close(elf) == -1)
 {
-dprint(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
 exit(98);
 }
 }
@@ -230,7 +230,7 @@ exit(98);
  * @argv: an array of pointer to the argument
  * return: 0 on success
  */
-int main(int_attribute_((_unused)) argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 Elf64_Ehdr *header;
 int m, s;
