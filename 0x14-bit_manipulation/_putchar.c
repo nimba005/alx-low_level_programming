@@ -3,11 +3,9 @@
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
- * Return: on succes 1
- * on error -1 is returned and error is set appropriately
+ * @c: character to print
+ * Return: -1 on success or -1 and set error appropriately
  */
-
 int _putchar(char c)
 {
 return (write(1, &c, 1));

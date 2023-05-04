@@ -2,7 +2,7 @@
 
 /**
  * get_bit - returns the value of a bit at a given index
- * @index: index starting from a 0
+ * @index: index starting from 0
  * @n: number to search
  * Return: value of index or -1
  */

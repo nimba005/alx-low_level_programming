@@ -1,10 +1,9 @@
 #include "main.h"
 
 /**
- * print_binary - prints the binary representation of a number
- * @n: number to print in the binary
+ * print_binary - print the binary reprentation of a number
+ * @n: the number to print binary
  */
-
 void print_binary(unsigned long int n)
 {
 int s, sum = 0;
@@ -21,5 +20,5 @@ else if (sum)
 _putchar('0');
 }
 if (!sum)
-_putchar ('0');
+_putchar('0');
 }
